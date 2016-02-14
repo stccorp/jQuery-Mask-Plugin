@@ -128,7 +128,7 @@
                 })
                 // clear the value if it not complete the mask
                 .on('focusout.mask', function() {
-                    if (options.clearIfNotMatch && !regexMask.test(p.val())) {
+                    if ((options.clearIfNotMatch || jMask.clearIfNotMatch) && !regexMask.test(p.val())) {
                        p.val('');
                    }
                 });
@@ -345,6 +345,7 @@
 
             jMask.byPassKeys = $.jMaskGlobals.byPassKeys;
             jMask.translation = $.jMaskGlobals.translation;
+            jMask.clearIfNotMatch =  $.jMaskGlobals.clearIfNotMatch;
 
             jMask.translation = $.extend({}, jMask.translation, options.translation);
             jMask = $.extend(true, {}, jMask, options);
@@ -465,6 +466,7 @@
         dataMaskAttr: '*[data-mask]',
         dataMask: true,
         watchInterval: 300,
+        clearIfNotMatch: false,
         watchInputs: true,
         watchDataMask: false,
         byPassKeys: [9, 16, 17, 18, 36, 37, 38, 39, 40, 91],
